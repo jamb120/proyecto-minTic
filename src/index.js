@@ -12,7 +12,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
-
+app.set('port', process.env.PORT || 3001);
 //midlewars
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +40,7 @@ app.use('/user', require(path.join(__dirname, 'routers', 'user.route')));
 app.use('/publication', require(path.join(__dirname, 'routers', 'publication.route')));
 
 //server initial
-app.listen(3001, ()=>{
+app.listen(app.get('port'), ()=>{console.log('server listening on port 3001')})
+/*app.listen(3001, ()=>{
     console.log('\x1b[36m%s\x1b[0m',`server listening on port ${server}`);
-});
+});*/
